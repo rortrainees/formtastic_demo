@@ -1,10 +1,13 @@
 <%= semantic_form_for @article do |f| %>
   <%= f.inputs do %>
-  <%= f.input :title, hint:'Make It Short And Please Be Specific', label: 'Title', input_html: { size: 20 } %>
-  <%= f.input :description, hint: 'Try To Explain More', label: 'Description', input_html: { size: 50 } %>
+  <%= f.input :title, hint:'Make It Short And Please Be Specific', label: 'Title', input_html: { size: 20 }, :required => true %>
+  <%= f.input :category, include_blank: false, hint: 'Which Category It Belongs In' %>
+  <%= f.input :author, as: :select, collection: ['Pam','Steve', 'Dave', 'Meg'], include_blank: false %>
+  <%= f.input :description, hint: 'What Is It All About', label: 'Description', input_html: { size: 50 } %>
   <% end %>
 
   <%= f.actions do %>
-    <%= f.action :submit, :as => :input %>
+    <%= f.action :submit, :as => :button %>
+    <%= f.action :cancel, :as => :link %>
   <% end %>
 <% end %>
