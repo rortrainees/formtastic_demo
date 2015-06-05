@@ -1,8 +1,13 @@
 <%= semantic_form_for @article do |f| %>
   <%= f.inputs do %>
+  <!-- we can take multiple fields in a single line -->
+  <%#= f.inputs :title , :description %>
+  <!-- we can make any feild to any type using as in -->
+  <%#= f.input :title, :as => :radio %>
   <%= f.input :title, hint:'Make It Short And Please Be Specific', label: 'Title', input_html: { size: 20 }, :required => true %>
-  <%= f.input :category, include_blank: false, hint: 'Which Category It Belongs In' %>
+  <%= f.input :category, collection: Category.where(cat_type: 1), include_blank: false  %>
   <%= f.input :author, as: :select, collection: ['Pam','Steve', 'Dave', 'Meg'], include_blank: false %>
+  <%= f.input :tags, as: :check_boxes %>
   <%= f.input :description, hint: 'What Is It All About', label: 'Description', input_html: { size: 50 } %>
   <% end %>
 
